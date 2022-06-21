@@ -40,17 +40,17 @@ class EncDecr:
 
 #print("decrypted string: ", decMessage)
 
-
-message = "hello_geeks!@#$%^&*()_+"
-print(message)
-cl = EncDecr(message)
-encr_message = cl.encrypt()
-print(encr_message)
-
-cl2 = EncDecr(encr_message)
-decr_message = cl2.decrypt()
-print(decr_message)
-if message == decr_message:
-    print("Yes")
-else:
-    print("NO")
+#testing above methods
+# message = "hello_geeks!@#$%^&*()_+"
+# print(message)
+# cl = EncDecr(message)
+# encr_message = cl.encrypt()
+# print(encr_message)
+#
+# cl2 = EncDecr(encr_message)
+# decr_message = cl2.decrypt()
+# print(decr_message)
+# if message == decr_message:
+#     print("Yes")
+# else:
+#     print("NO")

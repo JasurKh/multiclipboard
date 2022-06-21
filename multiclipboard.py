@@ -1,6 +1,7 @@
 import sys
 import clipboard
 import json
+import encrypt_decrypt as ed
 
 SAVED_DATA = "clipboard.json"
 
@@ -19,19 +20,33 @@ def load_data(filepath):
         return {}
 
 
+# ed.EncDecr(data).encrypt()
+
 if len(sys.argv) == 2:
     command = sys.argv[1]
     data = load_data(SAVED_DATA)
 
     if command == "save":
         key = input("Enter a key: ")
-        data[key] = clipboard.paste()
+        # data[key] = clipboard.paste()
+
+        # encrypting the data:
+        copied_data = clipboard.paste()
+        cl = ed.EncDecr(copied_data)
+        encr_message = cl.encrypt()
+        data[key] = encr_message.decode('utf8')
+
         save_data(SAVED_DATA, data)
         print("Data saved!")
     elif command == "load":
         key = input("Enter a key: ")
         if key in data:
-            clipboard.copy(data[key])
+            # clipboard.copy(data[key])
+
+            # decrypting the data:
+            cl = ed.EncDecr(data[key])
+            decr_message = cl.decrypt()
+            clipboard.copy(decr_message)
             print("Data copied to clipboard.")
         else:
             print("Key does not exist.")
